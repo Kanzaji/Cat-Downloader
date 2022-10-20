@@ -1,4 +1,4 @@
-package kanzaji.MtMIc;
+package kanzaji.catdownloader;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -6,7 +6,7 @@ import java.io.FileReader;
 import com.google.gson.Gson;
 import java.io.IOException;
 
-public final class MTMIC {
+public final class CatDownloader {
     public static void main(String[] args) {
         // "What the hell did I just run" section
         System.out.println("Manifest to MinecraftInstance Converter v1.0");

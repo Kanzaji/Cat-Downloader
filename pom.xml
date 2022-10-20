@@ -5,12 +5,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.kanzaji.app</groupId>
-  <artifactId>MtMIc</artifactId>
+  <artifactId>CatDownloader</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>Manifest to Minecraftinstance converter</name>
+  <name>Cat Downloader</name>
   <!-- FIXME change it to the project's website -->
-  <url>Nothing_Here_Yet_:C</url>
+  <url>https://github.com/Kanzaji/Cat-Downloader</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,7 +62,7 @@
               <archive>
                 <manifest>
                   <addClasspath>.</addClasspath>
-                  <mainClass>kanzaji.MtMIc.MTMIC</mainClass>
+                  <mainClass>kanzaji.catdownloader.CatDownloader</mainClass>
                   <addBuildEnvironmentEntries>true</addBuildEnvironmentEntries>
                 </manifest>
               </archive>
