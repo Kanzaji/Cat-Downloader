@@ -1,10 +1,13 @@
 package kanzaji.catdownloader;
 
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
-import com.google.gson.Gson;
 import java.io.IOException;
+
+// import kanzaji.catdownloader.Manifest;
 
 public final class CatDownloader {
     public static void main(String[] args) {
@@ -31,13 +34,13 @@ public final class CatDownloader {
         }
 
         // Getting data from manifest.json
-        // Gson gson = new Gson();
-        // try {
-        //     System.out.println(gson.fromJson((new FileReader(manifestFile)),"manifestType"));
-        // } catch (IOException e) {
-        //     System.out.println("ERROR: Something bad happened!");
-        //     e.printStackTrace();
-        // }
+        Gson gson = new Gson();
+        try {
+            System.out.println(gson.fromJson((new FileReader(manifestFile)),Manifest[].class));
+        } catch (IOException e) {
+            System.out.println("ERROR: Something bad happened!");
+            e.printStackTrace();
+        }
 
         // Creating new minecraftinstance.json with data from manifest.json
         System.out.println("Creating minecraftinstance.json...");

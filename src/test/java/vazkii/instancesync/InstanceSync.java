@@ -10,7 +10,7 @@ public final class InstanceSync {
 	
 	private static final String VERSION = "1.0.2";
 
-	public static void main(String[] args) {
+	public static void instanceSync(String[] args) {
 		System.out.println("InstanceSync " + VERSION);
 		
 		long time = System.currentTimeMillis();

@@ -1,15 +1,21 @@
 package kanzaji.catdownloader;
 
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
-import com.google.gson.Gson;
 import java.io.IOException;
 
+// import kanzaji.catdownloader.Manifest;
+
 public final class CatDownloader {
+
+    public static String VERSION = "1.0-SNAPSHOT";
+
     public static void main(String[] args) {
         // "What the hell did I just run" section
-        System.out.println("Manifest to MinecraftInstance Converter v1.0");
+        System.out.println("Cat Downloader " + VERSION);
         System.out.println("Created by: Kanzaji -> My first project in java \\o/");
 
         // Setting directory where program was turned on
@@ -31,13 +37,13 @@ public final class CatDownloader {
         }
 
         // Getting data from manifest.json
-        // Gson gson = new Gson();
-        // try {
-        //     System.out.println(gson.fromJson((new FileReader(manifestFile)),"manifestType"));
-        // } catch (IOException e) {
-        //     System.out.println("ERROR: Something bad happened!");
-        //     e.printStackTrace();
-        // }
+        Gson gson = new Gson();
+        try {
+            System.out.println(gson.fromJson((new FileReader(manifestFile)),Manifest[].class));
+        } catch (IOException e) {
+            System.out.println("ERROR: Something bad happened!");
+            e.printStackTrace();
+        }
 
         // Creating new minecraftinstance.json with data from manifest.json
         System.out.println("Creating minecraftinstance.json...");
