@@ -8,7 +8,7 @@ public class Manifest {
     public String name;
     public String overrides;
     public String author;
-    public minecraft[] minecraft;
+    public minecraft minecraft;
 
     public static class Files {
         public Number ProjectID;

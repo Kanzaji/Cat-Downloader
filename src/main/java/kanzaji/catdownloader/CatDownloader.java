@@ -42,7 +42,7 @@ public final class CatDownloader {
         Gson gson = new Gson();
         try {
             Manifest manifest = gson.fromJson((new FileReader(manifestFile)),Manifest.class);
-            System.out.println(manifest);
+            System.out.println(manifest.name);
         } catch (IOException e) {
             System.out.println("ERROR: Something bad happened!");
             e.printStackTrace();
