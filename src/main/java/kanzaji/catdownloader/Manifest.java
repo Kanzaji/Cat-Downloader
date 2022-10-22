@@ -10,19 +10,19 @@ public class Manifest {
     public String author;
     public minecraft minecraft;
 
-    public static class Files {
+    public class Files {
         public Number ProjectID;
         public Number FileID;
         public String downloadURL;
         public Boolean required;
     }
 
-    public static class minecraft {
+    public class minecraft {
         public String version;
         public modLoaders[] modLoaders;
     }
 
-    public static class modLoaders {
+    public class modLoaders {
         public String id;
         public boolean primary;
     }

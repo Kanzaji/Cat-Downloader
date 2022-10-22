@@ -50,10 +50,18 @@ public final class CatDownloader {
             // Some more info about modpack
             System.out.println("Found " + manifest.files.length + " mods!");;
             // Testing area
+            int test = 0;
             for (Files file : manifest.files) {
-                String url = file.downloadURL;
-                int cut = url.lastIndexOf("/");
-                System.out.println(file.downloadURL.substring(cut));
+                    // String url = file.downloadURL;
+                    // int cut = url.lastIndexOf("/");
+                    // System.out.println(file.downloadURL.substring(cut));
+                    test += 1;
+                    System.out.println(test);
+                    System.out.println(file);
+                    System.out.println(file.ProjectID);
+                    System.out.println(file.FileID);
+                    System.out.println(file.downloadURL);
+                    System.out.println(file.required);
             }
         } catch (IOException e) {
             System.out.println("[ERROR]: Something bad happened...");
