@@ -15,8 +15,10 @@ public final class CatDownloader {
 
     public static void main(String[] args) {
         // "What the hell did I just run" section
-        System.out.println("Cat Downloader " + VERSION);
-        System.out.println("Created by: Kanzaji -> My first project in java \\o/");
+        System.out.println("---------------------------------------------------------------------");
+        System.out.println("     Cat Downloader " + VERSION);
+        System.out.println("     Created by: Kanzaji -> My first project in java \\o/");
+        System.out.println("---------------------------------------------------------------------");
 
         // Setting directory where program was turned on
         File dir = new File(".");
@@ -39,7 +41,8 @@ public final class CatDownloader {
         // Getting data from manifest.json
         Gson gson = new Gson();
         try {
-            System.out.println(gson.fromJson((new FileReader(manifestFile)),Manifest[].class));
+            Manifest manifest = gson.fromJson((new FileReader(manifestFile)),Manifest.class);
+            System.out.println(manifest);
         } catch (IOException e) {
             System.out.println("ERROR: Something bad happened!");
             e.printStackTrace();
