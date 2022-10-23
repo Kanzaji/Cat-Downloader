@@ -12,7 +12,8 @@ Cat Downloader is literally **my first project** in Java, so it is probably not 
 2. Unpack the zip in the directory of your Minecraft instance (For example, MultiMC)
 3. Move files from `overrides` to your Minecraft instance folder.
 4. Run the file `cat-downloader-1.0.jar` in your Minecraft Instance.
-5. Play your modpack with all mods downloaded automatically \o/
+5. Install forge/fabric version provided by Cat Downloader.
+6. Play your modpack with all mods downloaded automatically \o/
 
 # FAQ
 ---
