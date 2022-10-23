@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public final class CatDownloader {
 
-    public static String VERSION = "1.0-SNAPSHOT";
+    public static String VERSION = "1.0.1-SNAPSHOT";
 
     public static void main(String[] args) {
         // "What the hell did I just run" section
@@ -38,7 +38,8 @@ public final class CatDownloader {
             if (manifest.name == null) {
                 System.out.println("manifest.json doesn't have modpack name!");
             } else {
-                System.out.println("Installing modpack: " + manifest.name);
+                System.out.println("Installing modpack: " + manifest.name + " " + manifest.version);
+                System.out.println("That requires ModLoader: " + manifest.minecraft.version + " " + manifest.minecraft.modLoaders[0].id);
             }
             // Checking if manifest has any mods.
             if (manifest.files.length == 0) {
