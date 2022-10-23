@@ -1,7 +1,7 @@
 # Cat-Downloader
 Cat Downloader is a simple Java based downloader for Minecraft Modpacks from CurseForge.
 
-Cat Downloader is literally **my first project** in Java, so it is probably not the best :P
+This is literally **my first project** in Java, so it is probably not the best :P
 
 **Vazkii [InstanceSync](https://github.com/Vazkii/InstanceSync) code was used!** Thank you very much for the actual downloader part of this project <3
 
