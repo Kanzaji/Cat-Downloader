@@ -28,16 +28,9 @@ public class Instance {
 			public String getFileName() {
 				return fileNameOnDisk != null ? fileNameOnDisk : FileNameOnDisk;
 			}
-			
-			
 		}
-		
 	}
-	
 	public static class Scan {
-		
 		public String folderName;
-		
 	}
-	
 }

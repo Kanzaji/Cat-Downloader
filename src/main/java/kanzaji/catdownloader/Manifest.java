@@ -11,9 +11,9 @@ public class Manifest {
     public minecraft minecraft;
 
     public class Files {
-        public Number ProjectID;
-        public Number FileID;
-        public String downloadURL;
+        public Number projectID;
+        public Number fileID;
+        public String downloadUrl;
         public Boolean required;
     }
 

@@ -6,9 +6,6 @@ import java.io.File;
 // import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
-import kanzaji.catdownloader.Manifest.Files;
-
-// import kanzaji.catdownloader.Manifest;
 
 public final class CatDownloader {
 
@@ -50,18 +47,9 @@ public final class CatDownloader {
             // Some more info about modpack
             System.out.println("Found " + manifest.files.length + " mods!");;
             // Testing area
-            int test = 0;
-            for (Files file : manifest.files) {
-                    // String url = file.downloadURL;
-                    // int cut = url.lastIndexOf("/");
-                    // System.out.println(file.downloadURL.substring(cut));
-                    test += 1;
-                    System.out.println(test);
-                    System.out.println(file);
-                    System.out.println(file.ProjectID);
-                    System.out.println(file.FileID);
-                    System.out.println(file.downloadURL);
-                    System.out.println(file.required);
+            for (Manifest.Files file : manifest.files) {
+                    int cut = file.downloadUrl.lastIndexOf("/");
+                    System.out.println(file.downloadUrl.substring(cut+1));
             }
         } catch (IOException e) {
             System.out.println("[ERROR]: Something bad happened...");
