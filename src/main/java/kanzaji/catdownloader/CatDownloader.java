@@ -2,8 +2,9 @@ package kanzaji.catdownloader;
 
 import com.google.gson.Gson;
 
+import vazkii.instancesync.DownloadManager;
+
 import java.io.File;
-// import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -46,11 +47,23 @@ public final class CatDownloader {
             }
             // Some more info about modpack
             System.out.println("Found " + manifest.files.length + " mods!");;
-            // Testing area
-            for (Manifest.Files file : manifest.files) {
-                    int cut = file.downloadUrl.lastIndexOf("/");
-                    System.out.println(file.downloadUrl.substring(cut+1));
+
+            // Checking if /mods directory exists and can be used
+            File mods = new File(dir, "mods");
+            if(mods.exists() && !mods.isDirectory()) {
+                System.out.println("/mods exists but is a file, aborting");
+                System.exit(1);
             }
+            
+            if(!mods.exists()) {
+                System.out.println("/mods does not exist, creating");
+                mods.mkdir();
+            }
+
+            // Using modififed Vazkii DownloadManager to download mods
+            DownloadManager manager = new DownloadManager(mods);
+            manager.downloadInstance(manifest); 
+
         } catch (IOException e) {
             System.out.println("[ERROR]: Something bad happened...");
             e.printStackTrace();

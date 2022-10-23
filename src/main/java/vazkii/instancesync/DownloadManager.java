@@ -11,9 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import vazkii.instancesync.Instance.Addon;
-import vazkii.instancesync.Instance.Addon.AddonFile;
-import vazkii.instancesync.Instance.Scan;
+import kanzaji.catdownloader.Manifest;
+import kanzaji.catdownloader.Manifest.Files;;
 
 public class DownloadManager {
 
@@ -27,13 +26,13 @@ public class DownloadManager {
 		this.modsDir = modsDir;
 	}
 
-	public void downloadInstance(Instance instance) {
+	public void downloadInstance(Manifest manifest) {
 		executor = Executors.newFixedThreadPool(10);
 
-		System.out.println("Downloading any missing mods");
+		System.out.println("Downloading mods");
 		long time = System.currentTimeMillis();
 
-		for(Addon a : instance.installedAddons)
+		for(Files a : manifest.files)
 			downloadAddonIfNeeded(a);
 
 		if(downloadCount == 0) {
@@ -48,24 +47,18 @@ public class DownloadManager {
 			System.out.println("Downloads were interrupted!");
 			e.printStackTrace();
 		}
-		
-		for(Scan s : instance.cachedScans)
-			acceptableFilenames.add(s.folderName);
 
-		deleteRemovedMods();
+		// deleteRemovedMods();
 	}
 
-	private void downloadAddonIfNeeded(Addon addon) {
-		AddonFile file = addon.installedFile;
-		if(file == null)
-			return;
-
-		String filenameOnDisk = file.getFileName();
+	private void downloadAddonIfNeeded(Files addon) {
+		
+		String filenameOnDisk = addon.getFileName();
 		acceptableFilenames.add(filenameOnDisk);
 
 		File modFile = new File(modsDir, filenameOnDisk);
 		if(!modExists(modFile))
-			download(modFile, file.downloadUrl);
+			download(modFile, addon.downloadUrl);
 	}
 
 	private void download(final File target, final String downloadUrl) {
@@ -103,22 +96,6 @@ public class DownloadManager {
 		executor.submit(run);
 	}
 
-	private void deleteRemovedMods() {
-		System.out.println("Deleting any removed mods");
-		File[] files = modsDir.listFiles(f -> !f.isDirectory() && !acceptableFilenames.contains(f.getName()));
-
-		if(files.length == 0)
-			System.out.println("No mods were removed, woo!");
-		else { 
-			for(File f : files) {
-				System.out.println("Found removed mod " + f.getName());
-				f.delete();
-			}
-			
-			System.out.println("Deleted " + files.length + " old mods");
-		}
-	}
-
 	private boolean modExists(File file) {
 		if(file.exists())
 			return true;
@@ -141,4 +118,19 @@ public class DownloadManager {
 		return false;
 	}
 	
+	// private void deleteRemovedMods() {
+	// 	System.out.println("Deleting any removed mods");
+	// 	File[] files = modsDir.listFiles(f -> !f.isDirectory() && !acceptableFilenames.contains(f.getName()));
+
+	// 	if(files.length == 0)
+	// 		System.out.println("No mods were removed, woo!");
+	// 	else { 
+	// 		for(File f : files) {
+	// 			System.out.println("Found removed mod " + f.getName());
+	// 			f.delete();
+	// 		}
+			
+	// 		System.out.println("Deleted " + files.length + " old mods");
+	// 	}
+	// }
 }
