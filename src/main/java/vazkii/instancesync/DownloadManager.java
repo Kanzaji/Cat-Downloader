@@ -54,10 +54,6 @@ public class DownloadManager {
 	private void downloadAddonIfNeeded(Files addon) {
 		
 		String filenameOnDisk = addon.getFileName();
-		if (filenameOnDisk == "") {
-			System.out.println("No Download URL found in manifest.json!");
-			System.exit(1);
-		}
 		acceptableFilenames.add(filenameOnDisk);
 
 		File modFile = new File(modsDir, filenameOnDisk);
