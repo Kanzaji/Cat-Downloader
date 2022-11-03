@@ -17,8 +17,20 @@ public class Manifest {
         public Boolean required;
 
         public String getFileName() {
+            downloadUrl = getDownloadUrl();
+            if (downloadUrl == "No DownloadURL found!") {
+                return "";
+            }
             int cut = downloadUrl.lastIndexOf("/");
             return downloadUrl.substring(cut+1);
+        }
+
+        public String getDownloadUrl() {
+            if (downloadUrl == null) {
+                return "No DownloadURL found!";
+            } else {
+                return downloadUrl;
+            }
         }
     }
 
