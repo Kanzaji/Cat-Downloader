@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public final class CatDownloader {
 
-    public static String VERSION = "1.0.1-SNAPSHOT";
+    public static String VERSION = "1.1.0-SNAPSHOT";
 
     public static void main(String[] args) {
         // "What the hell did I just run" section
@@ -47,7 +47,7 @@ public final class CatDownloader {
                 System.exit(0);
             }
             // Some more info about modpack
-            System.out.println("Found " + manifest.files.length + " mods!");;
+            System.out.println("Found " + manifest.files.length + " mods!");
 
             // Checking if /mods directory exists and can be used
             File mods = new File(dir, "mods");
