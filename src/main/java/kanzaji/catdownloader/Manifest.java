@@ -25,18 +25,24 @@ public class Manifest {
             Gson gson = new Gson();
             if (downloadUrl == null) {
                 System.out.println("Getting downloadURL for project with ID: " + projectID);
-                String final_url = "";
                 try {
-                    URL url = new URL("api.cfwidget.com/" + projectID);
+                    URL url = new URL("https://api.cfwidget.com/" + projectID);
                     InputStreamReader site_data = new InputStreamReader(url.openStream());
                     data json_data = gson.fromJson(site_data, data.class);
-                    return json_data.urls[0].project+"/files/"+fileID;
+                    for (data_files file : json_data.files) {
+                        System.out.println(file.name + " / " + file.id  + " / " + fileID);
+                        if (file.id == fileID) {
+                            String url_2 = "https://edge.forgecdn.net/files/" + String.valueOf(file.id).substring(0, 3) + "/" + String.valueOf(file.id).substring(4) + "/" + file.name;
+                            System.out.println(url_2);
+                            return url_2;
+                        }
+                    }
                 } catch (Exception e) {
-                    System.out.println("Failed to get downloadURL for project with ID: " + projectID + ". Aborting!");
+                    System.out.println("Failed to get downloadURL for project with ID: " + projectID + ".");
                     e.printStackTrace();
                 }
-
-                return final_url;
+                System.out.println("Failed to get downloadURL for project with ID: " + projectID + " for unknown reason.");
+                return "";
             } else {
                 return downloadUrl;
             }
@@ -60,10 +66,11 @@ public class Manifest {
     }
 
     private class data {
-        private urls[] urls;
+        private data_files[] files;
     }
 
-    private class urls {
-        private String project;
+    private class data_files {
+        private Number id;
+        private String name;
     } 
 }
