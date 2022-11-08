@@ -31,7 +31,7 @@ public class Manifest {
                     data json_data = gson.fromJson(site_data, data.class);
                     for (data_files file : json_data.files) {
                         System.out.println(file.name + " / " + file.id  + " / " + fileID);
-                        if (file.id == fileID) {
+                        if (file.id == fileID) { // TODO This somehow doesn't work :V Help needed. Like, if I overwrite it with true, it does work and it actually downloads stuff.
                             String url_2 = "https://edge.forgecdn.net/files/" + String.valueOf(file.id).substring(0, 3) + "/" + String.valueOf(file.id).substring(4) + "/" + file.name;
                             System.out.println(url_2);
                             return url_2;
@@ -41,7 +41,7 @@ public class Manifest {
                     System.out.println("Failed to get downloadURL for project with ID: " + projectID + ".");
                     e.printStackTrace();
                 }
-                System.out.println("Failed to get downloadURL for project with ID: " + projectID + " for unknown reason.");
+                System.out.println("Failed to get downloadURL for project with ID: " + projectID + ". Couldn't find file with ID specified in manifest.json reason.");
                 return "";
             } else {
                 return downloadUrl;
