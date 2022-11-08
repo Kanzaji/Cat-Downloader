@@ -11,7 +11,7 @@ This is literally **my first project** in Java, so it is probably not the best :
 1. Download a zipped modpack from CurseForge.
 2. Unpack the zip in the directory of your Minecraft instance (For example, MultiMC)
 3. Move files from `overrides` to your Minecraft instance folder.
-4. Run the file `CatDownloader-1.0.1.jar` in your Minecraft Instance.
+4. Run the file `CatDownloader-1.1.0.jar` in your Minecraft Instance.
 5. Install correct version of Minecraft and Forge/Fabric provided by Cat Downloader.
 6. Play your modpack with all mods downloaded automatically \o/
 
