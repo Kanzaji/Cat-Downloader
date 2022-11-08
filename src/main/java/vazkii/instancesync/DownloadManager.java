@@ -58,7 +58,7 @@ public class DownloadManager {
 
 		File modFile = new File(modsDir, filenameOnDisk);
 		if(!modExists(modFile))
-			download(modFile, addon.downloadUrl);
+			download(modFile, addon.getDownloadUrl());
 	}
 
 	private void download(final File target, final String downloadUrl) {
