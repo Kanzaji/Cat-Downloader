@@ -30,10 +30,10 @@ public class Manifest {
                     InputStreamReader site_data = new InputStreamReader(url.openStream());
                     data json_data = gson.fromJson(site_data, data.class);
                     for (data_files file : json_data.files) {
-                        System.out.println(file.name + " / " + file.id  + " / " + fileID);
-                        if (file.id == fileID) { // TODO This somehow doesn't work :V Help needed. Like, if I overwrite it with true, it does work and it actually downloads stuff.
-                            String url_2 = "https://edge.forgecdn.net/files/" + String.valueOf(file.id).substring(0, 3) + "/" + String.valueOf(file.id).substring(4) + "/" + file.name;
-                            System.out.println(url_2);
+                        // System.out.println(file.name + " / " + file.id  + " / " + fileID);
+                        if (file.id.intValue() == fileID.intValue()) {
+                            String url_2 = "https://edge.forgecdn.net/files/" + String.valueOf(file.id).substring(0, 4) + "/" + String.valueOf(file.id).substring(4) + "/" + file.name;
+                            // System.out.println(url_2);
                             return url_2;
                         }
                     }
