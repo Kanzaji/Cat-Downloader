@@ -57,8 +57,13 @@ public class DownloadManager {
 		acceptableFilenames.add(filenameOnDisk);
 
 		File modFile = new File(modsDir, filenameOnDisk);
-		if(!modExists(modFile))
+		if(!modExists(modFile)) {
 			download(modFile, addon.getDownloadUrl());
+		};
+		
+		if (modFile.length() == 0) {
+			System.out.println("Probably failed to download " + modFile.getName() +" // File appears to be empty!");
+		};
 	}
 
 	private void download(final File target, final String downloadUrl) {
