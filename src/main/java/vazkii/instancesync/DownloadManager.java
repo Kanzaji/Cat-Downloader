@@ -60,16 +60,6 @@ public class DownloadManager {
 		if(!modExists(modFile)) {
 			download(modFile, addon.getDownloadUrl());
 		};
-
-		if (modFile.length() == 0) {
-			System.out.println("Probably failed to download " + modFile.getName() +" // File appears to be empty!");
-			System.out.println("Trying to download " + modFile.getName() +" again...");
-			if (modFile.delete()) {
-				download(modFile, addon.getDownloadUrl());
-			} else {
-				System.out.println("Failed to delete file " + modFile.getName());
-			}
-		};
 	}
 
 	private void download(final File target, final String downloadUrl) {
@@ -101,6 +91,16 @@ public class DownloadManager {
 				System.out.println("Failed to download " + name);
 				e.printStackTrace();
 			}
+
+			if (target.length() == 0) {
+				System.out.println("Probably failed to download " + name +" // File appears to be empty!");
+				System.out.println("Trying to download " + name +" again...");
+				if (target.delete()) {
+					download(target, downloadUrl);
+				} else {
+					System.out.println("Failed to delete file " + name);
+				}
+			};
 		};
 
 		downloadCount++;
