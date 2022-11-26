@@ -34,6 +34,7 @@ public class Manifest {
                         if (file.id.intValue() == fileID.intValue()) {
                             String url_2 = "https://edge.forgecdn.net/files/" + String.valueOf(file.id).substring(0, 4) + "/" + String.valueOf(file.id).substring(4) + "/" + file.name;
                             // System.out.println(url_2);
+                            url_2.replaceAll(" ", "%20");
                             return url_2;
                         }
                     }
