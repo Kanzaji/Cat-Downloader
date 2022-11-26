@@ -63,6 +63,12 @@ public class DownloadManager {
 
 		if (modFile.length() == 0) {
 			System.out.println("Probably failed to download " + modFile.getName() +" // File appears to be empty!");
+			System.out.println("Trying to download " + modFile.getName() +" again...");
+			if (modFile.delete()) {
+				download(modFile, addon.getDownloadUrl());
+			} else {
+				System.out.println("Failed to delete file " + modFile.getName());
+			}
 		};
 	}
 
