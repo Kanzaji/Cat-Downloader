@@ -38,10 +38,10 @@ public class Manifest {
                         }
                     }
                 } catch (Exception e) {
-                    System.out.println("[ERROR] Failed to get downloadURL for project with ID: " + projectID + ".");
+                    System.out.println("Failed to get downloadURL for project with ID: " + projectID + ".");
                     e.printStackTrace();
                 }
-                System.out.println("[ERROR] Failed to get downloadURL for project with ID: " + projectID + ". Couldn't find file with ID specified in manifest.json.");
+                System.out.println("Failed to get downloadURL for project with ID: " + projectID + ". Couldn't find file with ID specified in manifest.json.");
                 return "";
             } else {
                 return downloadUrl;

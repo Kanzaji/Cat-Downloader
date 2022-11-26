@@ -27,7 +27,7 @@ public class DownloadManager {
 	}
 
 	public void downloadInstance(Manifest manifest) {
-		executor = Executors.newFixedThreadPool(10);
+		executor = Executors.newFixedThreadPool(16);
 
 		System.out.println("Downloading mods");
 		long time = System.currentTimeMillis();
@@ -60,7 +60,7 @@ public class DownloadManager {
 		if(!modExists(modFile)) {
 			download(modFile, addon.getDownloadUrl());
 		};
-		
+
 		if (modFile.length() == 0) {
 			System.out.println("Probably failed to download " + modFile.getName() +" // File appears to be empty!");
 		};
