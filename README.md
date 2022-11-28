@@ -5,13 +5,14 @@ This is literally **my first project** in Java, so it is probably not the best :
 
 **Vazkii [InstanceSync](https://github.com/Vazkii/InstanceSync) code was used!** Thank you very much for the actual downloader part of this project <3
 
-**Gson** is required.
+**Gson** and **Java 17** is required for compiling.
+**Java 17** is required for running.
 
 # Usage
 1. Download a zipped modpack from CurseForge.
 2. Unpack the zip in the directory of your Minecraft instance (For example, MultiMC)
 3. Move files from `overrides` to your Minecraft instance folder.
-4. Run the file `CatDownloader-1.1.0.jar` in your Minecraft Instance.
+4. Run the file `CatDownloader-1.1.1.jar` in your Minecraft Instance.
 5. Install correct version of Minecraft and Forge/Fabric provided by Cat Downloader.
 6. Play your modpack with all mods downloaded automatically \o/
 
