@@ -21,4 +21,7 @@ Cat Downloader is a simple Java based downloader for Minecraft Modpacks from Cur
 - Q: Will there be a way to give the downloader a link to a modpack, and it will download it automatically?
 - A: Someday... maybe...
 ---
+- Q: How to contribute changes?
+- A: Take a look at develop branch :D There is all info you need there.
+---
 ### Created by: Kanzaji
