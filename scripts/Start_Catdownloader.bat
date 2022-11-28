@@ -1,3 +1,3 @@
 @echo off
-java -jar CatDownloader-1.1.0.jar
+java -jar CatDownloader-1.1.1.jar
 pause
