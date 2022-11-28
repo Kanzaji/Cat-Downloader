@@ -27,7 +27,7 @@ public class DownloadManager {
 	}
 
 	public void downloadInstance(Manifest manifest) {
-		executor = Executors.newFixedThreadPool(10);
+		executor = Executors.newFixedThreadPool(16);
 
 		System.out.println("Downloading mods");
 		long time = System.currentTimeMillis();
@@ -57,8 +57,9 @@ public class DownloadManager {
 		acceptableFilenames.add(filenameOnDisk);
 
 		File modFile = new File(modsDir, filenameOnDisk);
-		if(!modExists(modFile))
+		if(!modExists(modFile)) {
 			download(modFile, addon.getDownloadUrl());
+		};
 	}
 
 	private void download(final File target, final String downloadUrl) {
@@ -90,6 +91,16 @@ public class DownloadManager {
 				System.out.println("Failed to download " + name);
 				e.printStackTrace();
 			}
+
+			if (target.length() == 0) {
+				System.out.println("Probably failed to download " + name +" // File appears to be empty!");
+				System.out.println("Trying to download " + name +" again...");
+				if (target.delete()) {
+					download(target, downloadUrl);
+				} else {
+					System.out.println("Failed to delete file " + name);
+				}
+			};
 		};
 
 		downloadCount++;

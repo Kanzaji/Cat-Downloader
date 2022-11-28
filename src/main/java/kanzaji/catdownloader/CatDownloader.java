@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public final class CatDownloader {
-
     public static String VERSION = "1.1.0";
 
     public static void main(String[] args) {

@@ -34,14 +34,15 @@ public class Manifest {
                         if (file.id.intValue() == fileID.intValue()) {
                             String url_2 = "https://edge.forgecdn.net/files/" + String.valueOf(file.id).substring(0, 4) + "/" + String.valueOf(file.id).substring(4) + "/" + file.name;
                             // System.out.println(url_2);
+                            url_2 = url_2.replaceAll(" ", "%20");
                             return url_2;
                         }
                     }
                 } catch (Exception e) {
-                    System.out.println("[ERROR] Failed to get downloadURL for project with ID: " + projectID + ".");
+                    System.out.println("Failed to get downloadURL for project with ID: " + projectID + ".");
                     e.printStackTrace();
                 }
-                System.out.println("[ERROR] Failed to get downloadURL for project with ID: " + projectID + ". Couldn't find file with ID specified in manifest.json.");
+                System.out.println("Failed to get downloadURL for project with ID: " + projectID + ". Couldn't find file with ID specified in manifest.json.");
                 return "";
             } else {
                 return downloadUrl;
@@ -51,7 +52,7 @@ public class Manifest {
         public String getFileName() {
             downloadUrl = getDownloadUrl();
             int cut = downloadUrl.lastIndexOf("/");
-            return downloadUrl.substring(cut+1);
+            return downloadUrl.substring(cut+1).replaceAll("%20", " ");
         }
     }
 
