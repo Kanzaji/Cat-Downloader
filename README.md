@@ -5,13 +5,14 @@ Cat Downloader is a simple Java based downloader for Minecraft Modpacks from Cur
 
 **Vazkii [InstanceSync](https://github.com/Vazkii/InstanceSync) code was used!** Thank you very much for the actual downloader part of this project <3
 
-# Usage
-1. Download a zipped modpack from CurseForge.
-2. Unpack the zip in the directory of your Minecraft instance (For example, MultiMC)
-3. Move files from `overrides` to your Minecraft instance folder.
-4. Run the file `CatDownloader-1.1.1.jar` in your Minecraft Instance.
-5. Install correct version of Minecraft and Forge/Fabric provided by Cat Downloader.
-6. Play your modpack with all mods downloaded automatically \o/
+# How to use CatDownloader?
+1. Download .zip version of the pack from CurseForge.
+2. Move `CatDownloader-1.1.1.jar` and [optionally] run script to your minecraft instance folder.
+3. Unpack your .zip version of the pack.
+4. Move `manifest.json` and all files/folders from `override` folder to your minecraft folder as well.
+5. Run `CatDownloader-1.1.1.jar` and wait until it finishes.
+6. Install correct version of Minecraft and Forge/Fabric provided by Cat Downloader at the start of the download.
+7. Play your modpack with all mods downloaded automatically \o/
 
 # FAQ
 ---
