@@ -10,7 +10,7 @@ This is literally **my first project** in Java, so it is probably not the best :
 # Contributing
 - Fork and clone respository on your machine.
 - Setup Maven on your machine (For example, with use of Visual Studio Code addon)
-- Just, makes changes and PR them here to Develop branch :sweat_smile:
+- Just, make changes and PR them here to Develop branch :sweat_smile:
 
 I don't have Code of Conduct, or any Contributing Guidelines, because this is so small project that I use for learning Java, that I think they are a bit useless ^^"
 
