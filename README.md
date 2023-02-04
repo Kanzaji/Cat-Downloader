@@ -17,6 +17,6 @@ I don't have Code of Conduct, or any Contributing Guidelines, because this is so
 Just please, provide some explanation of your code.
 
 # Testing your build
-If you have Maven setted up properly, just use command `mvn clean compile assemble:single`. It should create a file with Gson libraries inside.
+If you have Maven setted up properly, just use command `mvn clean compile assembly:single`. It should create a file with Gson libraries inside.
 
 ### Created by: Kanzaji
