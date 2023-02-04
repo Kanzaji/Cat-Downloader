@@ -1,4 +1,4 @@
-package kanzaji.catdownloader;
+package com.kanzaji.catdownloader;
 
 import java.io.InputStreamReader;
 import java.net.URL;

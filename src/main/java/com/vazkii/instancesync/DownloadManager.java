@@ -1,4 +1,4 @@
-package vazkii.instancesync;
+package com.vazkii.instancesync;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,8 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import kanzaji.catdownloader.Manifest;
-import kanzaji.catdownloader.Manifest.Files;;
+import com.kanzaji.catdownloader.Manifest;
+import com.kanzaji.catdownloader.Manifest.Files;;
 
 public class DownloadManager {
 

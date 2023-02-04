@@ -75,7 +75,7 @@
             <archive>
               <manifest>
                 <addClasspath>.</addClasspath>
-                <mainClass>kanzaji.catdownloader.CatDownloader</mainClass>
+                <mainClass>com.kanzaji.catdownloader.CatDownloader</mainClass>
               </manifest>
             </archive>
           </configuration>
