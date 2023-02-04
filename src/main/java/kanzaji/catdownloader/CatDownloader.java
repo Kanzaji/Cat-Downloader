@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public final class CatDownloader {
 
-    public static String VERSION = "1.1.1-SNAPSHOT";
+    public static String VERSION = "DEVELOP";
 
     public static void main(String[] args) {
         // "What the hell did I just run" section
