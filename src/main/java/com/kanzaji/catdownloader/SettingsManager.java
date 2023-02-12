@@ -15,6 +15,7 @@ public class SettingsManager {
     Path LocalDir;
     Path Kanzaji;
     Path CatDownloader;
+    Path SettingsFile;
 
     Gson gson = new Gson();
     Logger logger = Logger.getInstance();
@@ -56,11 +57,22 @@ public class SettingsManager {
                 logger.log("Failed to create CatDownloader folder in Appdata!", e);
                 return;
             }
-            Settings settings_data = gson.fromJson("{}", Settings.class);
+            Settings data = gson.fromJson("{}", Settings.class);
+            data.launcher = Path.of(".");
+            data.cached = false;
+            // TODO: Fix this stupid thing writing class path and not the actual data
+            this.SettingsFile = Path.of(this.CatDownloader.toAbsolutePath().toString(), "settings.json");
+            try {
+                Files.createFile(this.SettingsFile);
+                Files.writeString(this.SettingsFile, data.toString());
+            } catch (IOException e) {
+                logger.log("Failed to create settings file in Appdata!", e);
+                return;
+            }
         } else {
             logger.log("CatDownloader data folder found!");
         }
-        
+        this.initSuccesful = true;
         logger.log("SettingsManager initialization completed.");
     }
 }
