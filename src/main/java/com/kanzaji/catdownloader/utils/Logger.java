@@ -42,6 +42,10 @@ public class Logger {
         this.log(msg, type, null);
     }
 
+    public void log(String msg, Throwable error) {
+        this.log(msg, 3, error);
+    }
+
     public void log(String msg, int type, Throwable error) {
         // TODO: Pretty much add type support xD
         try {
