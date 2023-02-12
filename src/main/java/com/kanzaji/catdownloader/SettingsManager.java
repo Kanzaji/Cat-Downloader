@@ -14,6 +14,8 @@ public class SettingsManager {
     File LocalDir;
     File Kanzaji;
     File CatDownloader;
+
+    Gson gson = new Gson();
     Logger logger = Logger.getInstance();
 
     public static SettingsManager getInstance() {
@@ -37,7 +39,9 @@ public class SettingsManager {
             logger.log(Kanzaji.getAbsolutePath() + " created.");
         }
         if (!this.CatDownloader.exists()) {
-            logger.log(Kanzaji.getAbsolutePath() + " not found! Creating \"CatDownloader\" Folder and template of settings.");
+            logger.log(CatDownloader.getAbsolutePath() + " not found! Creating \"CatDownloader\" Folder and template of settings.");
+            this.CatDownloader.mkdir();
+            
         }
     }
 }

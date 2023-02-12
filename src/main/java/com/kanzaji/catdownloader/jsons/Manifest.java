@@ -26,6 +26,7 @@ public class Manifest {
             if (downloadUrl == null) {
                 System.out.println("Getting downloadURL for project with ID: " + projectID);
                 try {
+                    // TODO: Rework this to use GSON methods for searching
                     URL url = new URL("https://api.cfwidget.com/" + projectID);
                     InputStreamReader site_data = new InputStreamReader(url.openStream());
                     data json_data = gson.fromJson(site_data, data.class);
