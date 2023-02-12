@@ -11,8 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import com.kanzaji.catdownloader.Manifest;
-import com.kanzaji.catdownloader.Manifest.Files;;
+import com.kanzaji.catdownloader.jsons.Manifest;
+import com.kanzaji.catdownloader.jsons.Manifest.Files;;
 
 public class DownloadManager {
 
