@@ -64,7 +64,6 @@ public class SettingsManager {
             this.SettingsFile = Path.of(this.CatDownloader.toAbsolutePath().toString(), "settings.json");
             try {
                 Files.createFile(this.SettingsFile);
-                Files.writeString(this.SettingsFile, data.toString());
             } catch (IOException e) {
                 logger.log("Failed to create settings file in Appdata!", e);
                 return;

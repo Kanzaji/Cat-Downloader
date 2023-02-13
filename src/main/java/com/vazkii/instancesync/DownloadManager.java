@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import com.kanzaji.catdownloader.jsons.Manifest;
 import com.kanzaji.catdownloader.jsons.Manifest.Files;;
 
+// TODO: Rework this for use with Path and chaching, should pretty much make this code my at the end and not Vazkii :kek:
 public class DownloadManager {
 
 	private final File modsDir;
