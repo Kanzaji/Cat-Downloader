@@ -21,6 +21,7 @@ public final class CatDownloader {
         SettingsManager sm = SettingsManager.getInstance();
         logger.init();
         sm.init();
+        logger.postInit();
 
         // "What the hell did I just run" section
         System.out.println("---------------------------------------------------------------------");

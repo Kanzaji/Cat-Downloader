@@ -1,8 +1,11 @@
 package com.kanzaji.catdownloader.jsons;
 
-import java.nio.file.Path;
-
 public class Settings {
-    public Path launcher;
+    public Launcher launcher;
     public boolean cached;
+
+    public class Launcher {
+        public String path;
+        public String type;
+    }
 }
