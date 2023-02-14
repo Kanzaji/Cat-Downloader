@@ -92,7 +92,6 @@ public class Logger {
     }
 
     private void log(String msg, int type, Throwable error) {
-        // TODO: Pretty much add type support xD
         String Type = "";
         switch (type) {
             case 0:
@@ -108,6 +107,7 @@ public class Logger {
                 Type = "INFO";
                 break;
         }
+        
         try {
             Files.writeString(this.logFile, "[" + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS").format(new Date()) + "] [" + Type + "] " + msg + "\n", StandardOpenOption.APPEND);
             if (error != null) {

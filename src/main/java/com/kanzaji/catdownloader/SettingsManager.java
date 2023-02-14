@@ -2,6 +2,7 @@ package com.kanzaji.catdownloader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 import com.kanzaji.catdownloader.jsons.Settings;
 import com.kanzaji.catdownloader.utils.Logger;
 
@@ -37,6 +38,17 @@ public class SettingsManager {
 
     public static Path getSettingsPath() {
         return instance.CatDownloader.toAbsolutePath();
+    }
+
+    public Settings getSettings() throws JsonSyntaxException, IOException {
+        if (!initSuccesful) {
+            return null;
+        }
+        return gson.fromJson(Files.readString(this.SettingsFile), Settings.class);
+    }
+
+    public boolean validateSettings() {
+        return false;
     }
 
     public void init() {
