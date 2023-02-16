@@ -1,52 +1,70 @@
 package com.vazkii.instancesync;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import com.kanzaji.catdownloader.SettingsManager;
 import com.kanzaji.catdownloader.jsons.Manifest;
-import com.kanzaji.catdownloader.jsons.Manifest.Files;;
+import com.kanzaji.catdownloader.jsons.Manifest.Files;
+import com.kanzaji.catdownloader.utils.Logger;
 
 // TODO: Rework this for use with Path and chaching, should pretty much make this code my at the end and not Vazkii :kek:
 public class DownloadManager {
 
-	private final File modsDir;
+	private final Path modsDir;
 	
 	private List<String> acceptableFilenames = new LinkedList<>();
 	private ExecutorService executor; 
 	private int downloadCount;
+
+	private Logger logger = Logger.getInstance();
 	
-	public DownloadManager(File modsDir) {
+	public DownloadManager(Path modsDir) {
 		this.modsDir = modsDir;
 	}
 
 	public void downloadInstance(Manifest manifest) {
 		executor = Executors.newFixedThreadPool(16);
 
-		System.out.println("Downloading mods");
+		System.out.println("Downloading mods...");
+		logger.log("Starting downloading mods...");
 		long time = System.currentTimeMillis();
+		int failed = 0;
 
-		for(Files a : manifest.files)
-			downloadAddonIfNeeded(a);
+		for(Files a : manifest.files) 
+			if(a.getData(manifest.minecraft)) {downloadAddonIfNeeded(a);} else {failed += 1;}
 
 		if(downloadCount == 0) {
-			System.out.println("No mods need to be downloaded, yay!");
+			if (failed > 0) {
+				System.out.println(failed + " mods failed to download! Check the log at \"" + SettingsManager.getSettingsPath() + "\" for more details!");
+				logger.error(failed + " mods failed to download. Look for errors in the log for more details!");
+			} else {
+				System.out.println("No mods need to be downloaded, yay!");
+				logger.log("No mods need to be downloaded.");
+			}
 		} else try {
 			executor.shutdown();
 			executor.awaitTermination(1, TimeUnit.DAYS);
 
 			float secs = (float) (System.currentTimeMillis() - time) / 1000F;
-			System.out.printf("Finished downloading %d mods (Took %.2fs)%n%n", downloadCount, secs);
+			logger.log(String.format("Finished downloading %d mods (Took %.2fs)", downloadCount, secs));
+			System.out.printf("Finished downloading %d mods (Took %.2fs)%n", downloadCount, secs);
+			if (failed > 0) {
+				System.out.println(failed + " mods failed to download! Check the log at \"" + SettingsManager.getSettingsPath() + "\" for more details!");
+				logger.error(failed + " mods failed to download. Look for errors in the log for more details!");
+			}
 		} catch (InterruptedException e) {
 			System.out.println("Downloads were interrupted!");
-			e.printStackTrace();
+			logger.logStackTrace("Downloads were interrupted!", e);
 		}
 
 		// deleteRemovedMods();
@@ -57,28 +75,28 @@ public class DownloadManager {
 		String filenameOnDisk = addon.getFileName();
 		acceptableFilenames.add(filenameOnDisk);
 
-		File modFile = new File(modsDir, filenameOnDisk);
+		Path modFile = Path.of(modsDir.toAbsolutePath().toString(), filenameOnDisk);
 		if(!modExists(modFile)) {
-			download(modFile, addon.getDownloadUrl());
-		};
+			download(modFile, addon.downloadUrl);
+		}
 	}
 
-	private void download(final File target, final String downloadUrl) {
+	private void download(final Path target, final String downloadUrl) {
 		Runnable run = () -> {
-			String name = target.getName();
+			String name = target.getFileName().toString();
 
 			try {
-				System.out.println("Downloading " + name);
+				logger.log("Downloading " + name);
 				long time = System.currentTimeMillis(); 
 
 				URL url = new URL(downloadUrl);
-				FileOutputStream out = new FileOutputStream(target);
+				OutputStream out = java.nio.file.Files.newOutputStream(target, StandardOpenOption.CREATE_NEW);
 
 				URLConnection connection = url.openConnection();
 				InputStream in = connection.getInputStream();
 
 				byte[] buf = new byte[4096];
-				int read = 0;
+				int read;
 
 				while((read = in.read(buf)) > 0)
 					out.write(buf, 0, read);
@@ -87,43 +105,43 @@ public class DownloadManager {
 				in.close();
 
 				float secs = (float) (System.currentTimeMillis() - time) / 1000F;
-				System.out.printf("Finished downloading %s (Took %.2fs)%n", name, secs);
+				logger.log(String.format("Finished downloading %s (Took %.2fs)", name, secs));
 			} catch(Exception e) {
 				System.out.println("Failed to download " + name);
-				e.printStackTrace();
+				logger.logStackTrace("Failed to download " + name, e);
 			}
 
-			if (target.length() == 0) {
-				System.out.println("Probably failed to download " + name +" // File appears to be empty!");
-				System.out.println("Trying to download " + name +" again...");
-				if (target.delete()) {
-					download(target, downloadUrl);
-				} else {
-					System.out.println("Failed to delete file " + name);
+			try {
+				if (java.nio.file.Files.size(target) == 0) {
+					logger.warn("Probably failed to download " + name +" // File appears to be empty!");
+					logger.warn("Trying to download " + name +" again...");
+					if (java.nio.file.Files.deleteIfExists(target))	download(target, downloadUrl);
 				}
-			};
+			} catch (IOException e) {
+				logger.logStackTrace("Failed to delete file " + name, e);
+			}
 		};
 
 		downloadCount++;
 		executor.submit(run);
 	}
 
-	private boolean modExists(File file) {
-		if(file.exists())
+	private boolean modExists(Path file) {
+		if(file.toFile().exists())
 			return true;
 		
-		String name = file.getName();
+		String name = file.getFileName().toString();
 		
 		if(name.endsWith(".disabled"))
 			return swapIfExists(file, name.replaceAll("\\.disabled", ""));
 		else return swapIfExists(file, name + ".disabled");
 	}
 	
-	private boolean swapIfExists(File target, String searchName) {
-		File search = new File(modsDir, searchName);
-		if(search.exists()) {
-			System.out.println("Found alt file for " + target.getName() + " -> " + searchName + ", switching filename");
-			search.renameTo(target);
+	private boolean swapIfExists(Path target, String searchName) {
+		Path search = Path.of(modsDir.toAbsolutePath().toString(), searchName);
+		if(search.toFile().exists()) {
+			logger.warn("Found alt file for " + target.getFileName() + " -> " + searchName + ", switching filename");
+			search.toFile().renameTo(target.toFile());
 			return true;
 		}
 		

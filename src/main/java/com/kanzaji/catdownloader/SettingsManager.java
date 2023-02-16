@@ -13,7 +13,7 @@ public class SettingsManager {
     private static SettingsManager instance = null;
     public boolean isWindows = System.getProperty("os.name").startsWith("Windows");
     public String fsp = System.getProperty("file.separator"); // File Separator
-    boolean initSuccesful = false;
+    boolean initSuccessful = false;
     Path LocalDir;
     Path Kanzaji;
     Path CatDownloader;
@@ -29,11 +29,11 @@ public class SettingsManager {
         return instance;
     }
 
-    public static boolean settingsAvaiable() {
+    public static boolean settingsAvailable() {
         if (instance == null) {
             return false;
         }
-        return instance.initSuccesful;
+        return instance.initSuccessful;
     }
 
     public static Path getSettingsPath() {
@@ -41,7 +41,7 @@ public class SettingsManager {
     }
 
     public Settings getSettings() throws JsonSyntaxException, IOException {
-        if (!initSuccesful) {
+        if (!initSuccessful) {
             return null;
         }
         return gson.fromJson(Files.readString(this.SettingsFile), Settings.class);
@@ -85,8 +85,8 @@ public class SettingsManager {
                 return;
             }
 
-            Settings data = new Settings(); // Creating new Settigs Object with default values
-            data.launcher = data.new Launcher();
+            Settings data = new Settings(); // Creating new Settings Object with default values
+            data.launcher = new Settings.Launcher();
             data.launcher.path = Path.of(".").toAbsolutePath().toString();
             data.launcher.type = "Legacy";
             data.cached = false;
@@ -107,7 +107,7 @@ public class SettingsManager {
             logger.log("CatDownloader data folder found!");
         }
 
-        this.initSuccesful = true;
+        this.initSuccessful = true;
         logger.log("SettingsManager initialization completed.");
     }
 }

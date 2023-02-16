@@ -46,7 +46,7 @@ public class GUI {
 
         try {
             InputStream file = FileReader.getFile("Assets/test.png");
-            Image myPicture = ImageIO.read(file).getScaledInstance(gWidth/2, gHeight/2, Image.SCALE_SMOOTH); // This distorts the image a ton. But like... this is gonna be a white background so.
+            Image myPicture = ImageIO.read(file).getScaledInstance(gWidth/2, gHeight/2, Image.SCALE_SMOOTH); // This distorts the image a ton. But like... this is going to be a white background so.
             JLabel picLabel = new JLabel(new ImageIcon(myPicture));
             picLabel.setSize(new Dimension(gWidth/2, gHeight/2));
             c.anchor = GridBagConstraints.FIRST_LINE_START;

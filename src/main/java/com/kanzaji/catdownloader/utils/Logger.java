@@ -41,7 +41,7 @@ public class Logger {
     public void postInit() {
         this.log("Logger Post-Initialization sequence started.");
 
-        if (SettingsManager.settingsAvaiable()) {
+        if (SettingsManager.settingsAvailable()) {
 
             this.log("Settings were initiated, moving log file to \"" + SettingsManager.getSettingsPath() + "\"");
             Path newLogFile = Path.of(SettingsManager.getSettingsPath().toString(), "Launcher.log");
@@ -61,14 +61,14 @@ public class Logger {
             this.log("New log file moved to appdata. Log file present at \"" + this.logFile.toAbsolutePath() + "\"");
 
             return;
-        };
+        }
 
         this.warn("Settings unavailable, log file present at \"" + this.logFile.toAbsolutePath() + "\"");
         this.log("Logger Post-Initialization sequence completed.");
     }
 
     public void log(String msg) {
-        this.log(msg, 0, null);
+        this.logType(msg, 0);
     }
 
     public void warn(String msg) {
@@ -84,7 +84,7 @@ public class Logger {
     }
 
     public void logStackTrace(String msg, Throwable throwable) {
-        this.log(msg, 2, throwable);
+        this.logCustom(msg, 2, throwable);
     }
 
     public void logCustom(String msg, int type, Throwable throwable) {
@@ -92,22 +92,12 @@ public class Logger {
     }
 
     private void log(String msg, int type, Throwable error) {
-        String Type = "";
-        switch (type) {
-            case 0:
-                Type = "INFO";
-                break;
-            case 1:
-                Type = "WARN";
-                break;
-            case 2:
-                Type = "ERROR";
-                break;
-            default:
-                Type = "INFO";
-                break;
-        }
-        
+        String Type = switch (type) {
+            case 1 -> "WARN";
+            case 2 -> "ERROR";
+            default -> "INFO";
+        };
+
         try {
             Files.writeString(this.logFile, "[" + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS").format(new Date()) + "] [" + Type + "] " + msg + "\n", StandardOpenOption.APPEND);
             if (error != null) {
@@ -116,7 +106,7 @@ public class Logger {
                 for (StackTraceElement stackTraceElement : stackTraceList) {
                     stackTrace.append("    at ").append(stackTraceElement).append("\n");
                 }
-                Files.writeString(this.logFile, "[" + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS").format(new Date()) + "] [" + Type + "] " + error.toString() + "\n" + stackTrace.toString() + "\n", StandardOpenOption.APPEND);
+                Files.writeString(this.logFile, "[" + new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS").format(new Date()) + "] [" + Type + "] " + error + "\n" + stackTrace + "\n", StandardOpenOption.APPEND);
             }
         } catch (IOException e) {
             e.printStackTrace();
