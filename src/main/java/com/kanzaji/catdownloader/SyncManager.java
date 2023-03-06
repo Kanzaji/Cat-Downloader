@@ -1,10 +1,10 @@
-package com.kanzaji.catdownloaderlegacy;
+package com.kanzaji.catdownloader;
 
-import com.kanzaji.catdownloaderlegacy.jsons.Manifest;
-import com.kanzaji.catdownloaderlegacy.utils.ArgumentDecoder;
-import com.kanzaji.catdownloaderlegacy.utils.DownloadUtilities;
-import com.kanzaji.catdownloaderlegacy.utils.Logger;
-import static com.kanzaji.catdownloaderlegacy.utils.FileVerificationUtils.verifyFile;
+import com.kanzaji.catdownloader.jsons.Manifest;
+import com.kanzaji.catdownloader.utils.ArgumentDecoder;
+import com.kanzaji.catdownloader.utils.DownloadUtilities;
+import com.kanzaji.catdownloader.utils.Logger;
+import static com.kanzaji.catdownloader.utils.FileVerificationUtils.verifyFile;
 
 import java.io.IOException;
 import java.nio.file.Files;

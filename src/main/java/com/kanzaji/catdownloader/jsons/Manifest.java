@@ -1,6 +1,6 @@
-package com.kanzaji.catdownloaderlegacy.jsons;
+package com.kanzaji.catdownloader.jsons;
 
-import com.kanzaji.catdownloaderlegacy.utils.Logger;
+import com.kanzaji.catdownloader.utils.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

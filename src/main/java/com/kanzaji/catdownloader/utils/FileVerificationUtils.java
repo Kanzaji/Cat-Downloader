@@ -1,4 +1,4 @@
-package com.kanzaji.catdownloaderlegacy.utils;
+package com.kanzaji.catdownloader.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

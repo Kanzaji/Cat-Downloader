@@ -1,13 +1,10 @@
-package com.kanzaji.catdownloaderlegacy;
+package com.kanzaji.catdownloader;
 
-import javax.swing.*;
+import com.kanzaji.catdownloader.utils.FileReader;
 
-import com.kanzajiold.catdownloader.CatDownloader;
-import com.kanzajiold.catdownloader.utils.FileReader;
-
-import java.awt.*;
 import javax.imageio.ImageIO;
-
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -64,7 +61,7 @@ public class GUI {
         // Adding stuff to the frame or whatever
         frame.getContentPane().add(panel);
 
-        frame.getContentPane().setBackground(new Color(0, 0, 0, 255));
+        frame.getContentPane().setBackground(new Color(48, 191, 24, 255));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(gWidth/2, gHeight/2);
         frame.setResizable(false);

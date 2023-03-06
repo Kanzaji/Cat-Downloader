@@ -1,6 +1,6 @@
-package com.kanzaji.catdownloaderlegacy.utils;
+package com.kanzaji.catdownloader.utils;
 
-import static com.kanzaji.catdownloaderlegacy.utils.FileVerificationUtils.verifyFile;
+import static com.kanzaji.catdownloader.utils.FileVerificationUtils.verifyFile;
 
 import org.jetbrains.annotations.Nullable;
 

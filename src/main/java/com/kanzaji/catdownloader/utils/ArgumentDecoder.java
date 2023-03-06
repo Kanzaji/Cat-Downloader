@@ -1,4 +1,4 @@
-package com.kanzaji.catdownloaderlegacy.utils;
+package com.kanzaji.catdownloader.utils;
 
 import java.util.Locale;
 import java.util.Objects;

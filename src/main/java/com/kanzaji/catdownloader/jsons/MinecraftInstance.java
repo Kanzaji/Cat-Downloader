@@ -1,4 +1,4 @@
-package com.kanzaji.catdownloaderlegacy.jsons;
+package com.kanzaji.catdownloader.jsons;
 
 public class MinecraftInstance {
 

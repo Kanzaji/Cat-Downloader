@@ -1,10 +1,10 @@
-package com.kanzaji.catdownloaderlegacy;
+package com.kanzaji.catdownloader;
 
-import com.kanzaji.catdownloaderlegacy.jsons.Manifest;
-import com.kanzaji.catdownloaderlegacy.jsons.MinecraftInstance;
-import com.kanzaji.catdownloaderlegacy.utils.ArgumentDecoder;
-import com.kanzaji.catdownloaderlegacy.utils.Logger;
-import com.kanzaji.catdownloaderlegacy.utils.MIInterpreter;
+import com.kanzaji.catdownloader.jsons.Manifest;
+import com.kanzaji.catdownloader.jsons.MinecraftInstance;
+import com.kanzaji.catdownloader.utils.ArgumentDecoder;
+import com.kanzaji.catdownloader.utils.Logger;
+import com.kanzaji.catdownloader.utils.MIInterpreter;
 
 import com.google.gson.Gson;
 
