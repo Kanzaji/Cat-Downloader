@@ -1,14 +1,17 @@
-package com.kanzaji.catdownloader;
+package com.kanzaji.catdownloaderlegacy;
+
+import com.kanzaji.catdownloaderlegacy.jsons.Settings;
+import com.kanzaji.catdownloaderlegacy.utils.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.kanzaji.catdownloader.jsons.Settings;
-import com.kanzaji.catdownloader.utils.Logger;
 
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
+//TODO: Add documentation, logging, and make this actually not terrible xD
 public class SettingsManager {
     private static SettingsManager instance = null;
     public boolean isWindows = System.getProperty("os.name").startsWith("Windows");

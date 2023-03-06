@@ -1,4 +1,4 @@
-package com.kanzaji.catdownloader.utils;
+package com.kanzaji.catdownloaderlegacy.utils;
 
 import java.io.InputStream;
 import java.util.MissingResourceException;

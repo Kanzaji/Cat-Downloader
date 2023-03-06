@@ -1,8 +1,9 @@
-package com.kanzaji.catdownloader;
+package com.kanzaji.catdownloaderlegacy;
 
 import javax.swing.*;
 
-import com.kanzaji.catdownloader.utils.FileReader;
+import com.kanzajiold.catdownloader.CatDownloader;
+import com.kanzajiold.catdownloader.utils.FileReader;
 
 import java.awt.*;
 import javax.imageio.ImageIO;

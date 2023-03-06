@@ -1,4 +1,4 @@
-package com.kanzaji.catdownloader.jsons;
+package com.kanzaji.catdownloaderlegacy.jsons;
 
 public class Settings {
     public Launcher launcher;
