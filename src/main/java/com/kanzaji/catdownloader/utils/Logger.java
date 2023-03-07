@@ -58,33 +58,34 @@ public class Logger {
     }
 
     /**
-     * TODO: Get actual documentation for this kek
+     * Used to move log file to Settings location, if Settings are available.
      */
     public void postInit() {
         this.log("Logger Post-Initialization sequence started.");
 
         if (SettingsManager.settingsAvailable()) {
-            if (SettingsManager.settingsAvailable()) {
+            this.log("Settings were initiated, moving log file to \"" + SettingsManager.getSettingsPath() + "\"");
+            Path newLogFile = Path.of(SettingsManager.getSettingsPath().toString(), "Launcher.log");
 
-                this.log("Settings were initiated, moving log file to \"" + SettingsManager.getSettingsPath() + "\"");
-                Path newLogFile = Path.of(SettingsManager.getSettingsPath().toString(), "Launcher.log");
-                if (newLogFile.toFile().exists()) {
-                    this.log("Old Log file found! That file is going to be replaced by the new file generated in initialization.");
-                }
-                try {
-                    Files.copy(this.logFile, newLogFile, StandardCopyOption.REPLACE_EXISTING);
-                    Files.delete(this.logFile);
-                } catch (IOException e) {
-                    this.logStackTrace("Failed to move log file to appdata!", e);
-                }
-                this.logFile = newLogFile;
-                this.log("New log file moved to appdata. Log file present at \"" + this.logFile.toAbsolutePath() + "\"");
+            if (Files.exists(newLogFile)) {
+                this.log("Old Log file found! That file is going to be replaced by the new file generated in initialization.");
+            }
 
+            try {
+                Files.copy(this.logFile, newLogFile, StandardCopyOption.REPLACE_EXISTING);
+                Files.delete(this.logFile);
+            } catch (IOException e) {
+                this.logStackTrace("Failed to move log file to appdata!", e);
                 return;
-            };
+            }
+            this.logFile = newLogFile;
+            this.log("New log file moved to appdata. Log file present at \"" + this.logFile.toAbsolutePath() + "\"");
+
+            return;
+        } else {
+            this.warn("Settings unavailable, log file present at \"" + this.logFile.toAbsolutePath() + "\"");
         }
 
-        this.warn("Settings unavailable, log file present at \"" + this.logFile.toAbsolutePath() + "\"");
         this.log("Logger Post-Initialization sequence completed.");
     }
 

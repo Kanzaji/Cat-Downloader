@@ -27,11 +27,17 @@ public final class CatDownloader {
     private static boolean Legacy = false;
 
     public static void main(String[] args) {
-        // Initialize utilities.
+        // Initialize Logger.
         logger.init();
         logger.log("Cat Downloader version: " + VERSION);
 
         try {
+            // Initialize Utilities.
+            SM.init();
+
+            // Post-Init of Utilities.
+            logger.postInit();
+
             // Decode Arguments and store them in ARD Instance.
             ARD.decodeArguments(args);
 
